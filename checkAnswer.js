@@ -1,0 +1,47 @@
+import * as se from "./se.js";
+
+export function checkAnswer(sho, amari) {
+  const mySho = Number(document.getElementById("sho-input").value);
+  const myAmari = Number(document.getElementById("amari-input").value);
+
+  if (mySho === sho && myAmari === amari) {
+    se.seikai2.currentTime = 0;
+    se.seikai2.play();
+    const img = document.createElement("img");
+    img.src = "./images/coin.png";
+    document.getElementById("score-pallet").appendChild(img);
+    alert("正解");
+    document.getElementById("hijosu-input").disabled = false;
+    document.getElementById("josu-input").disabled = false;
+    document.getElementById("sho-input").disabled = true;
+    document.getElementById("amari-input").disabled = true;
+    
+    return false;
+  } else {
+    se.alert.currentTime = 0;
+    se.alert.play();
+    alert("もう一度！");
+    return true;
+  }
+
+  // 答えをチェックする
+  // if (mondai_flag === false) {
+  //   se.alert.currentTime = 0;
+  //   se.alert.play();
+  //   alert("「問題を出す」をおしてください。");
+  //   return;
+  // }
+  // if (myAnswer == collectAnswer) {
+  //   se.seikai2.currentTime = 0;
+  //   se.seikai2.play();
+  //   const img = document.createElement("img");
+  //   img.src = "./images/coin.png";
+  //   document.getElementById("score-pallet").appendChild(img);
+  //   alert("正解");
+  //   mondai_flag = false;
+  // } else {
+  //   se.alert.currentTime = 0;
+  //   se.alert.play();
+  //   alert("もう一度！");
+  // }
+}
