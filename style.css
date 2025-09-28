@@ -101,8 +101,90 @@ img {
 }
 
 
+/* タブレット用（481px以上768px以下） */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+  body {
+    font-size: 2.2vw;
+  }
+
+  input {
+    width: 12vw;
+    height: 5vw;
+    line-height: 5vw;
+    font-size: 2.5vw;
+  }
+
+  #text-box {
+    height: max(40px, 7vw);
+    font-size: 2.5vw;
+    line-height: max(30px, 6vw);
+  }
+
+  td {
+    width: max(60px, 4vw);
+    height: max(60px, 4vw);
+    font-size: max(35px, 2.5vw);
+  }
+
+  .num {
+    width: max(55px, 3.2vw);
+    height: max(55px, 3.2vw);
+    line-height: max(55px, 3.2vw);
+    font-size: max(35px, 2.5vw);
+  }
+
+  img {
+    width: 4vw;
+    height: 4vw;
+    margin: 0.2vw;
+  }
+
+  .btn {
+    font-size: max(14px, 1.2vw);
+  }
+}
+
+/* スマホ用（480px以下） */
 @media screen and (max-width: 480px) {
-  /* 480px以下に適用されるCSS（スマホ用） */
+  body {
+    font-size: 3.5vw;
+  }
+
+  input {
+    width: 15vw;
+    height: 8vw;
+    line-height: 8vw;
+    font-size: 4vw;
+  }
+
+  #text-box {
+    height: max(50px, 10vw);
+    font-size: 4vw;
+    line-height: max(40px, 8vw);
+  }
+
+  td {
+    width: max(45px, 6vw);
+    height: max(45px, 6vw);
+    font-size: max(25px, 4vw);
+  }
+
+  .num {
+    width: max(40px, 5vw);
+    height: max(40px, 5vw);
+    line-height: max(40px, 5vw);
+    font-size: max(25px, 4vw);
+  }
+
+  img {
+    width: 6vw;
+    height: 6vw;
+    margin: 0.3vw;
+  }
+
+  .btn {
+    font-size: max(10px, 2vw);
+  }
 
   #btn-make-question{
     width: 36px;
@@ -110,5 +192,55 @@ img {
     margin-right: 2px;
     padding: 0;
     font-size: max(8px, 1vw);
+  }
+}
+
+/* デスクトップ用（1024px以上） */
+@media screen and (min-width: 1024px) {
+  body {
+    font-size: 18px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  input {
+    width: 120px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 24px;
+  }
+
+  #text-box {
+    height: 60px;
+    font-size: 24px;
+    line-height: 50px;
+  }
+
+  td {
+    width: 50px;
+    height: 50px;
+    font-size: 30px;
+  }
+
+  .num {
+    width: 46px;
+    height: 46px;
+    line-height: 46px;
+    font-size: 30px;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+  }
+
+  .btn {
+    font-size: 16px;
+  }
+
+  /* デスクトップでは筆算テーブルを中央寄せで少し大きく */
+  #calc-table {
+    font-size: 1.1em;
   }
 }
