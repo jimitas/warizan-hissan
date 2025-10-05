@@ -7,15 +7,23 @@ export function checkAnswer(sho, amari) {
   if (mySho === sho && myAmari === amari) {
     se.seikai2.currentTime = 0;
     se.seikai2.play();
+
+    // コインを追加
     const img = document.createElement("img");
     img.src = "./images/coin.png";
     document.getElementById("score-pallet").appendChild(img);
+
+    // 現在のコイン数を取得して+1
+    const savedCoins = localStorage.getItem("wariHissanCoinCount");
+    const coinCount = savedCoins ? parseInt(savedCoins, 10) : 0;
+    localStorage.setItem("wariHissanCoinCount", coinCount + 1);
+
     alert("正解");
     document.getElementById("hijosu-input").disabled = false;
     document.getElementById("josu-input").disabled = false;
     document.getElementById("sho-input").disabled = true;
     document.getElementById("amari-input").disabled = true;
-    
+
     return false;
   } else {
     se.alert.currentTime = 0;

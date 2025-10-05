@@ -21,6 +21,16 @@ export function hissan() {
   // 初期化
   createTable();
   numberSet();
+  loadCoins(); // ページ読み込み時にコインを復元
+
+  // トースト通知を表示（Bootstrap 5のトースト機能を使用）
+  setTimeout(() => {
+    const toastElement = document.getElementById('infoToast');
+    if (toastElement && typeof bootstrap !== 'undefined') {
+      const toast = new bootstrap.Toast(toastElement);
+      toast.show();
+    }
+  }, 100);
 
   // 問題を作成する。
   document.getElementById("btn-question").addEventListener("click", createQuestion, false);
@@ -245,4 +255,53 @@ export function hissan() {
     numberSet();
     myAnswerUpdate(sho);
   }
+
+  // ローカルストレージからコイン数を読み込み、画面に表示
+  function loadCoins() {
+    const savedCoins = localStorage.getItem("wariHissanCoinCount");
+    const coinCount = savedCoins ? parseInt(savedCoins, 10) : 0;
+    const scorePallet = document.getElementById("score-pallet");
+
+    // 保存されているコイン数だけコイン画像を表示
+    for (let i = 0; i < coinCount; i++) {
+      const img = document.createElement("img");
+      img.src = "./images/coin.png";
+      scorePallet.appendChild(img);
+    }
+  }
+
+  // コインをリセット（計算問題による確認付き）
+  const btnResetCoins = document.getElementById("btn-reset-coins");
+  btnResetCoins.addEventListener("click", () => {
+    se.alert.currentTime = 0;
+    se.alert.play();
+
+    // ランダムな計算問題を生成（3桁÷2桁で割り切れる問題）
+    const num2 = Math.floor(Math.random() * 70) + 10;   // 10-79の2桁の除数
+    const quotient = Math.floor(Math.random() * 20) + 5; // 5-24の商
+    const num1 = num2 * quotient;                        // 割り切れる3桁の被除数を生成
+    const correctAnswer = quotient;
+
+    const userAnswer = prompt(`コインをリセットするには、次の計算問題を解いてください。\n\n${num1} ÷ ${num2} = ?`);
+
+    // キャンセルした場合
+    if (userAnswer === null) {
+      return;
+    }
+
+    // 答えが正しいかチェック
+    if (parseInt(userAnswer, 10) === correctAnswer) {
+      // ローカルストレージをクリア
+      localStorage.removeItem("wariHissanCoinCount");
+      // 画面上のコインを全て削除
+      const scorePallet = document.getElementById("score-pallet");
+      scorePallet.innerHTML = "";
+      se.reset.play();
+      alert("正解です！コインをリセットしました。");
+    } else {
+      se.alert.currentTime = 0;
+      se.alert.play();
+      alert(`不正解です。正しい答えは ${correctAnswer} でした。\nコインはリセットされませんでした。`);
+    }
+  });
 }

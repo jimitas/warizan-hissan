@@ -113,25 +113,43 @@
 
       <div id="text-box2" class="h6" style="height: 20px; text-align: center"></div>
 
-      <div class="d-flex justify-content-center">
-        <div class="w-25"></div>
-        <div id="num-pallet" class="mx-auto w-75 d-flex flex-wrap justify-content-center droppable-elem"></div>
-        <div class="w-25 d-flex flex-wrap justify-content-left">
-          <img src="./images/gomibako.png" style="width: 60px; height: 80px" class="droppable-elem" alt="" />
+      <div class="d-flex justify-content-center" style="position: relative;">
+        <div id="num-pallet" class="w-75 d-flex flex-wrap justify-content-center droppable-elem"></div>
+        <!-- ゴミ箱を絶対位置配置で右側に -->
+        <div style="position: absolute; right: 0; top: 0;">
+          <img src="./images/gomibako.png" style="width: 60px; height: 80px" class="droppable-elem" alt="ゴミ箱" />
         </div>
       </div>
 
       <div id="buttons" class="d-flex flex-wrap justify-content-center">
-
         <button type="button" id="btn-erase" class="m-2 btn btn-secondary">消す</button>
         <button type="button" id="btn-hint" class="m-2 btn btn-info">ヒント</button>
         <button type="button" id="btn-check" class="m-2 btn btn-primary">答え合わせ</button>
       </div>
 
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center my-1">
         <div id="score-pallet" class="w-75 d-flex justify-content-left flex-wrap"></div>
       </div>
+
+      <div class="d-flex justify-content-center">
+        <button type="button" id="btn-reset-coins" class="btn btn-warning btn-sm">コインをリセット</button>
+      </div>
     </main>
+
+    <!-- トースト通知用のコンテナ -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div id="infoToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="8000">
+        <div class="toast-header bg-info text-white">
+          <strong class="me-auto">📚 アプリの使い方</strong>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+          基本的な整数のわり算の筆算ができます。たてる→かける→おろす→ひくの基本的な操作になれることをねらいとしています。<br>
+          <span style="color:red; font-weight: bold;">✨ 正しい商をたてると、色が変わるサポートつき！</span><br>
+          ここで習得できれば、小数のわり算にも活かせると思います。
+        </div>
+      </div>
+    </div>
 
     <footer class="bg-light">
       <p class="m-2 h6 ">
@@ -140,6 +158,9 @@
     </footer>
     <!-- howler.jsの読み込み -->
     <script src="howler.min.js"></script>
+
+    <!-- Bootstrap 5 JavaScriptの読み込み -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- <script src="main.js"></script> -->
   </body>
