@@ -26,20 +26,34 @@ export function hissan() {
   // トースト通知を表示（Bootstrap 5のトースト機能を使用）
   setTimeout(() => {
     const toastElement = document.getElementById('infoToast');
-    if (toastElement && typeof bootstrap !== 'undefined') {
-      const toast = new bootstrap.Toast(toastElement);
-      toast.show();
+    if (toastElement) {
+      if (typeof bootstrap !== 'undefined' && bootstrap.Toast) {
+        const toast = new bootstrap.Toast(toastElement);
+        toast.show();
+      } else {
+        console.error('Bootstrap Toast is not available');
+      }
+    } else {
+      console.error('Toast element not found');
     }
-  }, 100);
+  }, 500);
 
   // 問題を作成する。
   document.getElementById("btn-question").addEventListener("click", createQuestion, false);
   function createQuestion() {
+    // 被乗数、除数、商、余りを決定し、代入する。
+    const randomNumberArray = createRandomNumber();
+
+    // 問題の種類が選択されていない場合
+    if (!randomNumberArray) {
+      se.alert.currentTime = 0;
+      se.alert.play();
+      return;
+    }
+
     se.set.currentTime = 0;
     se.set.play();
     mondai_flag = true;
-    // 被乗数、除数、商、余りを決定し、代入する。
-    const randomNumberArray = createRandomNumber();
     [hijosu, josu, sho, amari] = randomNumberArray;
 
     clearTable();

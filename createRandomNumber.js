@@ -9,6 +9,13 @@ export function createRandomNumber() {
   }
 
   const index = modeSelect.value;
+
+  // 問題の種類が選択されていない場合
+  if (index === "" || index === null) {
+    alert("問題の種類を選んでください。");
+    return null;
+  }
+
   const amari_ratio = amariSelect.value === "true" ? 1 : 0;
   let hijosu = 0; // 被除数（わられる数）
   let josu = 0;   // 除数（わる数）
